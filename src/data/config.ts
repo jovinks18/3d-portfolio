@@ -1,45 +1,37 @@
 const config = {
-  title: "Naresh Khatri | Full-Stack Developer",
+  title: "Jovin Sivakumar | CS Engineer & Business Strategy",
   description: {
-    long: "Explore the portfolio of Naresh, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
+    long: "Explore the portfolio of Jovin Sivakumar, a Computer Science engineer and business graduate specializing in data-driven automation, product strategy, and scalable system solutions. Based in San Francisco with experience across Europe and Asia.",
     short:
-      "Discover the portfolio of Naresh, a full-stack developer creating interactive web experiences and innovative projects.",
+      "Portfolio of Jovin Sivakumar: A CS Engineer and business strategist building scalable, data-driven solutions.",
   },
   keywords: [
-    "Naresh",
-    "portfolio",
-    "full-stack developer",
-    "creative technologist",
-    "web development",
-    "3D animations",
-    "interactive websites",
-    "Coding Ducks",
-    "The Booking Desk",
-    "Ghostchat",
-    "web design",
-    "GSAP",
-    "React",
-    "Next.js",
-    "Spline",
-    "Framer Motion",
+    "Jovin Sivakumar",
+    "Data Analyst",
+    "Product Strategy",
+    "Supply Chain Automation",
+    "Power BI",
+    "Python",
+    "UC Berkeley Haas",
+    "Agentic AI",
+    "System Design",
   ],
-  author: "Naresh Khatri",
-  email: "naresh.khatri2345@gmail.com",
-  site: "https://nareshkhatri.site",
+  author: "Jovin Sivakumar",
+  email: "jovin.sivakumar@berkeley.edu",
+  site: "https://your-portfolio.vercel.app", // Update after deployment
 
-  // for github stars button
-  githubUsername: "naresh-khatri",
+  githubUsername: "jovinks18",
   githubRepo: "3d-portfolio",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/nothotchaddi",
-    linkedin: "https://www.linkedin.com/in/naresh-khatri/",
-    instagram: "https://www.instagram.com/hotchaddi",
-    facebook: "https://www.facebook.com/HotChaddi/",
-    github: "https://github.com/Naresh-Khatri",
+    twitter: "https://x.com/your-handle",
+    linkedin: "https://www.linkedin.com/in/jovinks/",
+    instagram: "https://www.instagram.com/jovinks",
+    facebook: "#",
+    github: "https://github.com/jovinks",
   },
 };
 export { config };
