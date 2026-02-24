@@ -29,7 +29,7 @@ const config = {
   social: {
     twitter: "https://x.com/your-handle",
     linkedin: "https://www.linkedin.com/in/jovinks/",
-    instagram: "https://www.instagram.com/jovinks",
+    instagram: "https://www.instagram.com/jooficiel18",
     facebook: "#",
     github: "https://github.com/jovinks",
   },
