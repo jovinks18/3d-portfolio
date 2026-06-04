@@ -27,11 +27,11 @@ const config = {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/your-handle",
+    twitter: "https://x.com/jovinks18",
     linkedin: "https://www.linkedin.com/in/jovinks/",
     instagram: "https://www.instagram.com/jooficiel18",
     facebook: "#",
-    github: "https://github.com/jovinks",
+    github: "https://github.com/jovinks18",
   },
 };
 export { config };

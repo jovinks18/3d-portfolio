@@ -50,9 +50,9 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "-ml-[6px] leading-none font-thin text-transparent text-slate-800 text-left",
-                          "font-thin text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display "
+                          "-ml-[6px] leading-none font-thin text-foreground text-left",
+                          "text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "cursor-default font-display"
                         )}
                       >
                         {config.author.split(" ")[0]}
@@ -83,7 +83,7 @@ const HeroSection = () => {
               <div className="mt-8 flex flex-col gap-3 w-fit">
                 <Link
                   href={
-                    "https://drive.google.com/file/d/1DWZPEHZCY6fM6E-78ghdUn0d1vx-4bhh/view?usp=sharing"
+                    "https://jovin-resume.tiiny.site"
                   }
                   target="_blank"
                   className="flex-1"
