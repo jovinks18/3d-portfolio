@@ -76,7 +76,7 @@ const HeroSection = () => {
                       "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    Global Data Strategist
+                    Data and CX Strategist
                   </p>
                 </BlurIn>
               </div>

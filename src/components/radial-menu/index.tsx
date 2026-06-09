@@ -185,6 +185,8 @@ export default function RadialMenu() {
       setActiveIndex(null);
     } else {
     }
+    // socket is intentionally excluded; including it would cause the callback to be recreated on every socket event
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triggerConfetti]);
 
   const handleContextMenu = useCallback((e: MouseEvent) => {

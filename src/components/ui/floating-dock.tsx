@@ -15,9 +15,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { opacity } from "../header/anim";
 
 export const FloatingDock = ({
   items,
@@ -31,11 +29,12 @@ export const FloatingDock = ({
   return (
     <>
       <FloatingDockDesktop items={items} className={desktopClassName} />
-      {/* <FloatingDockMobile items={items} className={mobileClassName} /> */}
+      <FloatingDockMobile items={items} className={mobileClassName} />
     </>
   );
 };
 
+// Horizontally scrollable skill row for mobile. Always visible, no toggle.
 const FloatingDockMobile = ({
   items,
   className,
@@ -43,49 +42,30 @@ const FloatingDockMobile = ({
   items: { title: string; icon: React.ReactNode }[];
   className?: string;
 }) => {
-  const [open, setOpen] = useState(false);
   return (
-    <div className={cn("relative block md:hidden", className)}>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
-          >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <div
-                  key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
-                >
-                  <div className="h-4 w-4">{item.icon}</div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {/* <button
-        onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
-      >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-      </button> */}
+    <div
+      className={cn(
+        "flex md:hidden overflow-x-auto gap-4 px-2 py-2",
+        // Hide scrollbar cross-browser while keeping scroll functional
+        "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
+        className
+      )}
+    >
+      {items.map((item) => (
+        <div
+          key={item.title}
+          className="flex flex-col items-center gap-1.5 flex-shrink-0"
+        >
+          <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center">
+            <div className="h-5 w-5 flex items-center justify-center">
+              {item.icon}
+            </div>
+          </div>
+          <span className="text-xs text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
+            {item.title}
+          </span>
+        </div>
+      ))}
     </div>
   );
 };
@@ -102,6 +82,8 @@ const FloatingDockDesktop = ({
   const timer = useRef<NodeJS.Timeout>();
   const controls = useAnimation();
   useEffect(() => {
+    // Capture timer ref at effect-start, not inside cleanup, to satisfy react-hooks/exhaustive-deps
+    const t = timer.current;
     if (showHint) {
       controls.start({
         opacity: [0, 1, 1, 0],
@@ -120,8 +102,10 @@ const FloatingDockDesktop = ({
     }
     return () => {
       controls.stop();
-      clearInterval(timer.current);
+      clearInterval(t);
     };
+    // controls is a stable Framer Motion animation controller; omitting intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showHint]);
   return (
     <div className="relative h-fit flex items-center justify-center pointer-events-auto">
@@ -132,8 +116,7 @@ const FloatingDockDesktop = ({
         }}
         onMouseLeave={() => mouseX.set(Infinity)}
         className={cn(
-          // "hidden md:flex",
-          "flex gap-2 md:gap-4",
+          "hidden md:flex gap-2 md:gap-4",
           "mx-auto h-16 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
           // "blur-sm brightness-50",
           className

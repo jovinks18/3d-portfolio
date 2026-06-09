@@ -83,6 +83,8 @@ export const EditProfileModal = ({
         {/* Header with preview */}
         <div className="flex items-center gap-3 mb-4 pb-3 border-b border-black/10 dark:border-white/10 shrink-0">
           <div className="relative">
+            {/* Dynamic avatar URL; cannot use next/image with arbitrary origins */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={getAvatarUrl(avatarSeed)}
               alt="Preview"
@@ -131,6 +133,7 @@ export const EditProfileModal = ({
                   )}
                   onClick={() => setAvatarSeed(seed)}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={getAvatarUrl(seed)}
                     className="w-full h-full rounded-full"

@@ -18,6 +18,8 @@ function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
       lenis?.stop();
       lenis?.start();
     });
+    // lenis is intentionally excluded; this listener only needs to be registered once at mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

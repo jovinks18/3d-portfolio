@@ -100,6 +100,8 @@ const UserItem = ({
     >
       <div className="flex items-center gap-3 w-full">
         <div className="relative">
+          {/* Dynamic avatar URL; cannot use next/image with arbitrary origins */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={getAvatarUrl(user.avatar)}
             alt={user.name}

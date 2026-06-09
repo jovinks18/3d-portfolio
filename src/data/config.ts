@@ -18,7 +18,7 @@ const config = {
   ],
   author: "Jovin Sivakumar",
   email: "jovin.sivakumar@berkeley.edu",
-  site: "https://your-portfolio.vercel.app", // Update after deployment
+  site: "https://3d-portfolio-steel-delta-62.vercel.app",
 
   githubUsername: "jovinks18",
   githubRepo: "3d-portfolio",

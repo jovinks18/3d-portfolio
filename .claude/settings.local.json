@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(playwright --version)",
+      "Bash(node /tmp/screenshot-scroll.js)"
+    ]
+  }
+}

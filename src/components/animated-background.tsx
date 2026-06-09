@@ -288,6 +288,8 @@ const AnimatedBackground = () => {
       keycapAnimationsRef.current?.stop()
     }
 
+    // Spline helpers are recreated inside the effect; adding them would cause infinite loops
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [splineApp, isMobile]);
 
   // Handle keyboard text visibility based on theme and section
@@ -330,6 +332,8 @@ const AnimatedBackground = () => {
     // console.log(selectedSkill)
     splineApp.setVariable("heading", selectedSkill.label);
     splineApp.setVariable("desc", selectedSkill.shortDescription);
+    // splineApp is intentionally omitted; this effect only needs to re-run when selectedSkill changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkill]);
 
   // Handle rotation and teardown animations based on active section
@@ -423,6 +427,8 @@ const AnimatedBackground = () => {
 
     if (!splineApp || isLoading || keyboardRevealed) return;
     updateKeyboardTransform();
+    // router and updateKeyboardTransform are stable; adding them would re-trigger on every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [splineApp, isLoading, activeSection]);
 
   return (

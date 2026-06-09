@@ -69,6 +69,8 @@ export const useChatScroll = (isOpen: boolean, msgsLength: number, currentUserId
     } else {
       setUnreads(prev => prev + 1);
     }
+    // lastMsgSessionId is derived from props already captured above; adding it would cause double-fires
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [msgsLength, currentUserId]);
 
   return {

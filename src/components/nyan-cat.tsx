@@ -77,6 +77,8 @@ const AnimatedDiv = ({
       y: randY,
       transition: { duration: 5, ease: "linear" },
     });
+    // randY is a stable random value computed at mount; adding it would reset animation on every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controls]);
 
   const handlePause = () => {
@@ -91,6 +93,8 @@ const AnimatedDiv = ({
       onAnimationComplete={onCompleted}
       onClick={handlePause}
     >
+      {/* GIF easter egg; next/image would strip animation, so plain img is intentional */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/assets/nyan-cat.gif"
         className={cn("fixed z-10 h-40 w-auto")}

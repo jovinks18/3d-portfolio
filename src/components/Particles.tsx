@@ -44,14 +44,18 @@ export default function Particles({
     return () => {
       window.removeEventListener("resize", initCanvas);
     };
+    // Canvas helpers are defined inside the component; adding them would cause infinite re-animation
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isBlogPost]);
 
   useEffect(() => {
     onMouseMove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mousePosition.x, mousePosition.y]);
 
   useEffect(() => {
     initCanvas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 
   const initCanvas = () => {

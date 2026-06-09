@@ -15,6 +15,7 @@ import {
   SiOpenai,
   SiFastapi,
   SiStreamlit,
+  SiFigma,
 } from "react-icons/si";
 
 const BASE_PATH = "/assets/projects-screenshots";
@@ -24,7 +25,7 @@ const ProjectsLinks = ({ live }: { live: string }) => (
     {live !== "#" && (
       <Link className="font-mono underline flex gap-2" rel="noopener" target="_new" href={live}>
         <Button variant={"default"} size={"sm"}>
-          View Project Case Study
+          View Project
           <ArrowUpRight className="ml-3 w-5 h-5" />
         </Button>
       </Link>
@@ -32,19 +33,23 @@ const ProjectsLinks = ({ live }: { live: string }) => (
   </div>
 );
 
-export type Skill = { title: string; bg: string; fg: string; icon: ReactNode; };
+export type Skill = { title: string; icon: ReactNode; };
 
 const PROJECT_SKILLS = {
-  python:    { title: "Python",    bg: "black", fg: "white", icon: <SiPython /> },
-  powerbi:   { title: "Power BI",  bg: "black", fg: "white", icon: <SiPowerbi /> },
-  tableau:   { title: "Tableau",   bg: "black", fg: "white", icon: <SiTableau /> },
-  sql:       { title: "SQL",       bg: "black", fg: "white", icon: <SiPostgresql /> },
-  sap:       { title: "SAP ERP",   bg: "black", fg: "white", icon: <SiSap /> },
-  excel:     { title: "Excel",     bg: "black", fg: "white", icon: <SiMicrosoftexcel /> },
-  n8n:       { title: "n8n",       bg: "black", fg: "white", icon: <Workflow className="w-4 h-4" /> },
-  ai:        { title: "AI",        bg: "black", fg: "white", icon: <SiOpenai /> },
-  fastapi:   { title: "FastAPI",   bg: "black", fg: "white", icon: <SiFastapi /> },
-  streamlit: { title: "Streamlit", bg: "black", fg: "white", icon: <SiStreamlit /> },
+  python:    { title: "Python", icon: <SiPython /> },
+  powerbi:   { title: "Power BI", icon: <SiPowerbi /> },
+  tableau:   { title: "Tableau", icon: <SiTableau /> },
+  sql:       { title: "SQL", icon: <SiPostgresql /> },
+  sap:       { title: "SAP ERP", icon: <SiSap /> },
+  excel:     { title: "Excel", icon: <SiMicrosoftexcel /> },
+  n8n:       { title: "n8n", icon: <Workflow className="w-4 h-4" /> },
+  ai:        { title: "AI", icon: <SiOpenai /> },
+  fastapi:   { title: "FastAPI", icon: <SiFastapi /> },
+  streamlit: { title: "Streamlit", icon: <SiStreamlit /> },
+  lovable:   { title: "Lovable", icon: <Workflow className="w-4 h-4" /> },
+  figma:     { title: "Figma", icon: <SiFigma /> },
+  research:  { title: "Product Discovery", icon: <Globe className="w-4 h-4" /> },
+  data:      { title: "Market Research", icon: <Database className="w-4 h-4" /> },
 };
 
 export type Project = {
@@ -52,7 +57,6 @@ export type Project = {
   category: string;
   title: string;
   src: string;
-  screenshots: string[];
   skills: { frontend: Skill[]; backend: Skill[] };
   content: React.ReactNode | any;
   live: string;
@@ -64,11 +68,10 @@ const projects: Project[] = [
     id: "ab-inbev",
     category: "Data & Automation",
     title: "AB-InBev Inventory Automation",
-    src: `https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80`,
-    screenshots: [`https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80`],
+    src: `https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800&q=80`,
     skills: {
       frontend: [PROJECT_SKILLS.powerbi, PROJECT_SKILLS.excel],
-      backend:  [PROJECT_SKILLS.python, PROJECT_SKILLS.sap],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.sap],
     },
     live: "#",
     get content() {
@@ -110,10 +113,9 @@ const projects: Project[] = [
     category: "Product Strategy",
     title: "Maki People — Funnel & Retention Analysis",
     src: `https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80`,
-    screenshots: [`https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80`],
     skills: {
       frontend: [PROJECT_SKILLS.tableau],
-      backend:  [PROJECT_SKILLS.python, PROJECT_SKILLS.sql],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.sql],
     },
     live: "#",
     get content() {
@@ -149,18 +151,112 @@ const projects: Project[] = [
     },
   },
 
+    // ─── RavenStack Customer Success Analysis ───────────────────────────────────
+  {
+    id: "ravenstack-cs",
+    category: "Customer Success Analytics",
+    title: "RavenStack Customer Success Analysis",
+    src: `https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80`,
+    skills: {
+      frontend: [PROJECT_SKILLS.tableau, PROJECT_SKILLS.excel],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.sql],
+    },
+    live: "https://github.com/jovinks18/ravenstack-cs-analysis",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            B2B SaaS Churn & Customer Health Framework
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            RavenStack is a Customer Success analytics project built on synthetic B2B SaaS churn data. The goal
+            was to understand the role of a Customer Success personnelplays in preventing churn. The question an individual
+            in Customer Success would actually ask: which accounts are at risk,
+            how much ARR is exposed, what is driving churn, and what should the CS team do next?
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            I joined account, subscription, product usage, support ticket, and churn-event data into one
+            account-level view, then designed a Green / Yellow / Red customer health framework using usage,
+            support, tenure, engagement, and commercial signals.
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            The main finding was that behavioral health signals alone had weak predictive lift because most
+            churned ARR was driven by product, pricing, budget, and competitive reasons. The strongest operating
+            opportunity was a <strong>79% reactivation rate</strong>, suggesting win-back should become a
+            structured CS motion instead of an accidental outcome.
+          </TypographyP>
+
+          <TypographyP className="font-mono font-semibold">Key outputs:</TypographyP>
+          <TypographyP className="font-mono">
+            Executive summary, customer health framework, QBR deck for a high-risk Enterprise account, and a CS
+            operating model recommending renewal-stage intervention, Enterprise relationship management, pooled
+            SMB coverage, and a quarterly churn-evidence brief for Product and Finance.
+          </TypographyP>
+
+          <ProjectsLinks live={this.live} />
+        </div>
+      );
+    },
+  },
+    // ─── Structured Schema Compiler ─────────────────────────────────────────────
+  {
+    id: "schema-compiler",
+    category: "Local AI Infrastructure",
+    title: "Structured Schema Compiler",
+    src: `https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80`,
+    skills: {
+      frontend: [PROJECT_SKILLS.streamlit, PROJECT_SKILLS.ai],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.fastapi],
+    },
+    live: "https://github.com/jovinks18/local-schema-compiler",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            Offline SLM Extraction Engine
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            Structured Schema Compiler is a local-first AI extraction engine that turns messy natural language
+            inputs — resumes, chat logs, emails, and unstructured matrices — into deterministic,
+            schema-validated JSON.
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            I built a lightweight Streamlit workspace connected to a FastAPI routing layer, using Instructor
+            and Pydantic to enforce structured outputs before passing requests to a local Ollama model.
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            The project was designed around privacy, repeatability, and cost control: all inference runs locally,
+            avoiding cloud LLM token costs while keeping sensitive enterprise data off external APIs.
+          </TypographyP>
+
+          <TypographyP className="font-mono font-semibold">Key architecture:</TypographyP>
+          <TypographyP className="font-mono">
+            Streamlit UI for input and review, FastAPI local gateway for routing, Instructor and Pydantic for
+            schema validation, and Ollama with llama3.2 for offline small-language-model inference.
+          </TypographyP>
+
+          <ProjectsLinks live={this.live} />
+        </div>
+      );
+    },
+  },
   // ─── GoodFoods ───────────────────────────────────────────────────────────────
   {
     id: "goodfoods",
     category: "AI & Voice",
     title: "GoodFoods Reservation System",
     src: `${BASE_PATH}/portfolio/goodfoods-demo.png`,
-    screenshots: [`${BASE_PATH}/portfolio/goodfoods-demo.png`],
     skills: {
       frontend: [PROJECT_SKILLS.streamlit, PROJECT_SKILLS.ai],
-      backend:  [PROJECT_SKILLS.python, PROJECT_SKILLS.fastapi],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.fastapi],
     },
-    live: "#",
+    live: "https://github.com/jovinks18/vocal-pantry",
     get content() {
       return (
         <div>
@@ -175,7 +271,7 @@ const projects: Project[] = [
           </TypographyP>
 
           <TypographyP className="font-mono">
-            Users can type or speak their requests via microphone (transcribed by OpenAI Whisper), with replies
+            Users can type or speak their requests via microphone, transcribed by OpenAI Whisper, with replies
             read aloud using OpenAI TTS — lowering friction for mobile users and improving accessibility.
           </TypographyP>
 
@@ -191,6 +287,54 @@ const projects: Project[] = [
             missing info, capacity errors, invalid inputs, and cancellation requests. Guardrails against
             function-text leakage and placeholder hallucinations, plus a live Agent thinking trace panel so
             users can follow the model reasoning in real time.
+          </TypographyP>
+
+          <ProjectsLinks live={this.live} />
+        </div>
+      );
+    },
+  },
+
+  // ─── International Student Housing ──────────────────────────────────────────
+  {
+    id: "student-housing",
+    category: "AI Product Strategy",
+    title: "International Student Housing Copilot",
+    src: `https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80`,
+    skills: {
+      frontend: [PROJECT_SKILLS.lovable, PROJECT_SKILLS.figma],
+      backend: [PROJECT_SKILLS.ai, PROJECT_SKILLS.research, PROJECT_SKILLS.data],
+    },
+    live: "https://live-in.lovable.app/",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            AI-Native Housing Search for International Students
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            This project explored how international students search for off-campus housing before arriving
+            in a new country — a journey shaped by trust gaps, unclear rental terms, remote decision-making,
+            deposit risk, and timing pressure.
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            I used product discovery, market research, and journey mapping to define the core user needs:
+            comparing neighborhoods, understanding lease terms, avoiding scams, estimating true monthly
+            costs, and making confident housing decisions remotely.
+          </TypographyP>
+
+          <TypographyP className="font-mono">
+            I then prototyped an AI housing copilot concept in Lovable, designed to help students translate
+            listings, explain rental tradeoffs, surface risk signals, and match housing options to budget,
+            commute, lifestyle, and university constraints.
+          </TypographyP>
+
+          <TypographyP className="font-mono font-semibold">Key product decisions:</TypographyP>
+          <TypographyP className="font-mono">
+            Problem-first discovery before solution design, trust and safety as the core wedge, AI as a
+            decision-support layer, and a guided search experience instead of another generic listing platform.
           </TypographyP>
 
           <ProjectsLinks live={this.live} />

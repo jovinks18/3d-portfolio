@@ -105,6 +105,8 @@ const SocketContextProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       socket.disconnect();
     };
+    // toast is stable from Radix; adding it would reconnect the socket on every toast render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const currentUser = users.find(u => u.socketId === socket?.id);
 

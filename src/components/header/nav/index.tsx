@@ -42,6 +42,8 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
           />
           {/* <Footer /> */}
         </div>
+        {/* alt is set inside the Image component; linter cannot see through the abstraction */}
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image
           src={links[selectedLink.index].thumbnail}
           isActive={selectedLink.isActive}

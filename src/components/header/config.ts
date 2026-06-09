@@ -7,11 +7,6 @@ const links: Link[] = [
     thumbnail: ''
   },
   {
-    title: 'About',
-    href: '/#about',
-    thumbnail: ''
-  },
-  {
     title: 'Skills',
     href: '/#skills',
     thumbnail: ''

@@ -90,6 +90,8 @@ const ExperienceCard = ({
                   variant="outline"
                   className="gap-2 text-xs font-normal bg-secondary/30 hover:bg-secondary/50 transition-colors border-transparent"
                 >
+                  {/* Skill icons are CDN URLs from devicons/svgrepo; next/image not viable for arbitrary CDN domains */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={skill.icon}
                     alt={skill.label}

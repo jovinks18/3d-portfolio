@@ -175,8 +175,11 @@ const OnlineUsers = () => {
                   title="Edit Profile"
                 >
                   <div className="relative w-8 h-8">
-                    <img
+                    {/* User avatar from dynamic URL; next/image not viable for arbitrary user-provided URLs */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                       src={getAvatarUrl(currentUser.avatar)}
+                      alt={currentUser.name ? `${currentUser.name} avatar` : "User avatar"}
                       className="w-full h-full rounded-full ring-1 ring-black/10 dark:ring-white/10"
                       style={{ backgroundColor: currentUser.color || '#60a5fa' }}
                     />

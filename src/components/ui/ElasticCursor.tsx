@@ -102,6 +102,8 @@ function ElasticCursor() {
     set.width = gsap.quickSetter(jellyRef.current, "width", "px");
     set.height = gsap.quickSetter(jellyRef.current, "height", "px");
     set.opacity = gsap.quickSetter([jellyRef.current, dotRef.current], "opacity");
+    // set is a mutable object assigned once at mount; adding it would reset the GSAP setters on every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Start Animation loop
@@ -128,6 +130,8 @@ function ElasticCursor() {
     } else {
       set.opacity?.(1);
     }
+    // set/pos/vel are mutable GSAP refs; adding them would defeat the animation loop pattern
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHovering, isLoading, isHidden]);
 
   const [cursorMoved, setCursorMoved] = useState(false);
@@ -203,6 +207,8 @@ function ElasticCursor() {
     return () => {
       if (!isLoading) window.removeEventListener("mousemove", setFromEvent);
     };
+    // cursorMoved, isMobile, loop, pos, vel are mutable animation state; adding them would restart the event listener on every frame
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   useEffect(() => {

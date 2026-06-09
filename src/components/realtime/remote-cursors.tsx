@@ -38,6 +38,8 @@ const RemoteCursors = () => {
     return () => {
       socket.off("cursor-changed");
     };
+    // setUsers is a stable state setter; including it would have no effect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket, isMobile]);
   const handleMouseMove = useThrottle((x, y) => {
     socket?.emit("cursor-change", {
@@ -48,6 +50,8 @@ const RemoteCursors = () => {
   useEffect(() => {
     if (isMobile) return;
     handleMouseMove(x, y);
+    // handleMouseMove is a throttled callback; adding it would defeat the throttle
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [x, y, isMobile]);
 
   const users = Array.from(_users.values());
@@ -150,6 +154,8 @@ const Cursor = ({
         // setShowText(false);
       }, timeToRead);
     }
+    // socketId and users are intentionally excluded to avoid re-running on unrelated user list changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [msgs]);
 
   return (
@@ -221,7 +227,8 @@ const Cursor = ({
           ease: 'easeOut',
         }}
       >
-        {/* Avatar image */}
+        {/* Dynamic avatar URL; cannot use next/image with arbitrary origins */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={getAvatarUrl(avatar)}
           alt=""

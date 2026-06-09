@@ -76,6 +76,8 @@ export const ModalBody = ({
         if (e.key === "Escape") setOpen(false);
       });
     }
+    // setOpen is stable from context; empty deps array is intentional
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (open) {
@@ -229,23 +231,20 @@ const CloseIcon = () => {
   );
 };
 
-// Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
+// Fires callback when the user clicks outside of `ref`.
+// Returns early (does nothing) when:
+//   1. ref is not yet mounted
+//   2. the click target is inside the ref element
+// Any click outside the ref triggers the callback.
+// The Overlay component's own onClick handles the backdrop case redundantly
+// but setOpen(false) is idempotent so the double-fire is harmless.
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement>,
   callback: Function
 ) => {
   useEffect(() => {
-    const listener = (
-      event: any
-      //  React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
-    ) => {
-      // DO NOTHING if the element being clicked is the target element or their children
-      if (
-        !ref.current ||
-        ref.current.contains(event.target) ||
-        !event.target.classList.contains("no-click-outside")
-      ) {
+    const listener = (event: any) => {
+      if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
       callback(event);
@@ -258,5 +257,6 @@ export const useOutsideClick = (
       document.removeEventListener("mousedown", listener);
       document.removeEventListener("touchstart", listener);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, callback]);
 };
